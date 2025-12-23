@@ -1,4 +1,0 @@
-zone "siai.pt" {
-    type slave;
-    file "/etc/bind/db.siai.pt";
-};
