@@ -1,0 +1,4 @@
+zone "siai.pt" {
+    type master;
+    file "/etc/bind/db.siai.pt";
+};

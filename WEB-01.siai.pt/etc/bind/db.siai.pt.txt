@@ -1,0 +1,19 @@
+$TTL 86400
+@   IN  SOA web-01.siai.pt. admin.siai.pt. (
+        2025122101 ; Serial
+        3600       ; Refresh
+        1800       ; Retry
+        604800     ; Expire
+        86400 )    ; Minimum TTL
+
+; Name servers
+@       IN  NS  web-01.siai.pt.
+
+; Hosts
+web-01  IN  A   192.168.100.100
+web-02  IN  A   192.168.100.200
+ha-01   IN  A   192.168.100.10
+ha-02   IN  A   192.168.100.20
+
+; Website (points to HAProxy VIP)
+www     IN  A   192.168.100.1
