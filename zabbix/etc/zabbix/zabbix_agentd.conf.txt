@@ -4,5 +4,5 @@ LogFileSize=0
 Server=192.168.100.222
 ListenIP=192.168.100.222
 ServerActive=192.168.100.222
-Hostname=Zabbix server
+Hostname=zabbix
 Include=/etc/zabbix/zabbix_agentd.d/*.conf
