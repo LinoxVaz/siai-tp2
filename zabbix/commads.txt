@@ -1,0 +1,36 @@
+wget https://repo.zabbix.com/zabbix/6.4/debian/pool/main/z/zabbix-release/zabbix-release_6.4-1+debian12_all.deb
+sudo dpkg -i zabbix-release_6.4-1+debian12_all.deb
+sudo apt update
+
+sudo apt install -y mariadb-server mariadb-client
+sudo systemctl enable mariadb
+sudo systemctl start mariadb
+
+sudo mysql -u root -p
+CREATE DATABASE zabbix CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
+CREATE USER 'zabbix'@'localhost' IDENTIFIED BY 'StrongPassword';
+GRANT ALL PRIVILEGES ON zabbix.* TO 'zabbix'@'localhost';
+FLUSH PRIVILEGES;
+EXIT;
+
+sudo apt install -y \
+  zabbix-server-mysql \
+  zabbix-frontend-php \
+  zabbix-apache-conf \
+  zabbix-sql-scripts \
+  zabbix-agent
+
+zcat /usr/share/zabbix-sql-scripts/mysql/server.sql.gz | mysql -u zabbix -p zabbix
+sudo nano /etc/zabbix/zabbix_server.conf
+
+#We used this database parameters
+DBHost=localhost
+DBName=zabbix
+DBUser=zabbix
+DBPassword=StrongPassword
+
+sudo nano /etc/zabbix/apache.conf
+php_value date.timezone Europe/YourCity
+
+sudo systemctl enable zabbix-server 
+sudo systemctl restart zabbix-server
