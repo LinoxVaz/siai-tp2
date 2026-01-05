@@ -1,0 +1,7 @@
+PidFile=/run/zabbix/zabbix_agentd.pid
+LogFile=/var/log/zabbix-agent/zabbix_agentd.log
+LogFileSize=0
+Server=192.168.100.222
+ServerActive=192.168.100.222
+Hostname=web-02.siai.pt
+Include=/etc/zabbix/zabbix_agentd.conf.d/*.conf
